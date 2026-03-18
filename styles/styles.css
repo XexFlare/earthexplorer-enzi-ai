@@ -1,0 +1,591 @@
+/* styles.css — Earth Explorer Enzi */
+
+/* -------------------------------------------------------------------------
+   Reset & base
+   ---------------------------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #060d1f;
+  color: #fff;
+}
+
+/* -------------------------------------------------------------------------
+   Map
+   ---------------------------------------------------------------------- */
+
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+/* -------------------------------------------------------------------------
+   UI Panel
+   ---------------------------------------------------------------------- */
+
+#ui-panel {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  width: 240px;
+  transition: width 0.3s ease;
+}
+
+#ui-panel.expanded {
+  width: clamp(280px, 33vw, 480px);
+}
+
+.panel {
+  background: rgba(6, 13, 31, 0.82);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* Header */
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.panel-logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #3a7bd5 0%, #00aaff 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+
+.panel-subtitle {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 2px;
+}
+
+/* Sections */
+
+.panel-section {
+  margin-bottom: 20px;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 10px;
+}
+
+/* -------------------------------------------------------------------------
+   Navigation structure
+   ---------------------------------------------------------------------- */
+
+.nav-section {
+  margin-bottom: 20px;
+}
+
+/* Nav bar: back button + breadcrumb */
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  min-height: 22px;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.back-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.back-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.nav-breadcrumb {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Nav body — clips slide animations */
+
+.nav-body {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Nav list and buttons */
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(3px);
+}
+
+.nav-btn-primary {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nav-btn-secondary {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Location detail card */
+
+.location-detail {
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+
+.location-detail-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.location-detail-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.55;
+}
+
+/* Location image — only rendered when the data has an "image" field.
+   Fades in after the sidebar finishes expanding (0.25s delay matches
+   the width transition so the image doesn't appear before there's room). */
+.location-detail-image {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 8px;
+  object-fit: cover;
+  opacity: 0;
+  animation: image-fade-in 0.3s ease 0.25s forwards;
+}
+
+@keyframes image-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------------------------------
+   Nav view transitions
+   ---------------------------------------------------------------------- */
+
+/* Exiting views become absolute so they don't affect nav-body height.
+   The incoming (normal-flow) view determines the panel height. */
+.nav-view.exit-forward,
+.nav-view.exit-backward {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+@keyframes enter-fwd {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes enter-bwd {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes exit-fwd {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-12px); }
+}
+
+@keyframes exit-bwd {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(12px); }
+}
+
+.nav-view.enter-forward  { animation: enter-fwd 0.22s ease forwards; }
+.nav-view.enter-backward { animation: enter-bwd 0.22s ease forwards; }
+.nav-view.exit-forward   { animation: exit-fwd  0.22s ease forwards; }
+.nav-view.exit-backward  { animation: exit-bwd  0.22s ease forwards; }
+
+/* Satellite toggle */
+
+.layer-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.toggle-switch input:checked + .toggle-track {
+  background: rgba(58, 123, 213, 0.7);
+}
+
+.toggle-switch input:checked + .toggle-track::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+/* Footer */
+
+.panel-footer {
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.world-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.world-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.world-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------------
+   AI Panel (right side)
+   ---------------------------------------------------------------------- */
+
+#ai-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  width: clamp(260px, 28vw, 360px);
+  transform: translateX(calc(100% + 32px));
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+#ai-panel.visible {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.ai-panel-inner {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Content fade-in — delayed so it appears after the panel slides in */
+#ai-panel.visible .ai-panel-inner > * {
+  animation: ai-content-fade 0.3s ease 0.25s both;
+}
+
+@keyframes ai-content-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ai-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ai-dot {
+  width: 8px;
+  height: 8px;
+  background: #00aaff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: ai-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.6); opacity: 1; }
+  50%       { box-shadow: 0 0 0 6px rgba(0, 170, 255, 0);  opacity: 0.8; }
+}
+
+.ai-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.3;
+}
+
+/* Context block — shows current location name + path */
+.ai-context {
+  margin-bottom: 12px;
+  min-height: 32px;
+}
+
+.ai-context-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+
+.ai-context-location {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.ai-context-path {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+/* Input row */
+.ai-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 8px 10px;
+  transition: border-color 0.18s ease;
+}
+
+.ai-input-row:focus-within {
+  border-color: rgba(0, 170, 255, 0.35);
+}
+
+#ai-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  caret-color: #00aaff;
+}
+
+#ai-input::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.ai-input-hint {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------------
+   MapLibre control overrides — match dark theme
+   ---------------------------------------------------------------------- */
+
+.maplibregl-ctrl-group {
+  background: rgba(6, 13, 31, 0.82) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45) !important;
+  overflow: hidden;
+}
+
+.maplibregl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.maplibregl-ctrl-group button + button {
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Bottom-right controls: arrange groups horizontally side-by-side */
+.maplibregl-ctrl-bottom-right {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* Within the navigation ctrl-group in bottom-right, lay buttons out in a row */
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl-group button + button {
+  border-top: none !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.maplibregl-ctrl-icon {
+  filter: invert(1) opacity(0.6) !important;
+}
+
+.maplibregl-ctrl-attrib {
+  background: rgba(6, 13, 31, 0.7) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  border-radius: 6px !important;
+  font-size: 10px !important;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.maplibregl-ctrl-scale {
+  background: rgba(6, 13, 31, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 10px !important;
+}
