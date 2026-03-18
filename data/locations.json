@@ -42,7 +42,7 @@
           "name": "Salima",
           "coordinates": [-13.7800, 34.4500],
           "zoom": 14,
-          "pitch": 30,
+          "pitch": 60,
           "bearing": -15,
           "locations": [
             {
@@ -76,7 +76,7 @@
           "name": "Blantyre",
           "coordinates": [-15.7861, 35.0058],
           "zoom": 14,
-          "pitch": 30,
+          "pitch": 60,
           "bearing": 10,
           "locations": [
             {

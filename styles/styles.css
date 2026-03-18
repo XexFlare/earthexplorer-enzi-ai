@@ -1,4 +1,6 @@
 /* styles.css — Earth Explorer Enzi */
+/* FIX #3: Atmosphere overlay now reads --glow-strength and --atmo-opacity
+   CSS custom properties set by map.js to produce a dynamic Earth glow. */
 
 /* -------------------------------------------------------------------------
    Reset & base
@@ -26,6 +28,50 @@ html, body {
 #map {
   position: absolute;
   inset: 0;
+}
+
+/* -------------------------------------------------------------------------
+   FIX #3: Atmosphere overlay — dynamic glow driven by JS
+   ---------------------------------------------------------------------- */
+/* map.js sets two custom properties on this element every zoom frame:
+     --atmo-opacity   (0–1)  master visibility
+     --glow-strength  (0–1)  glow ring intensity
+   The gradient and opacity below consume these so the glow scales smoothly
+   from a bold "Earth from space" ring at orbital zoom down to nothing as
+   the user zooms into street level.                                        */
+
+#atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* Defaults before JS has run — prevents flash of unstyled content */
+  --atmo-opacity: 0.8;
+  --glow-strength: 0.7;
+
+  /* Master opacity driven by JS */
+  opacity: var(--atmo-opacity, 0);
+
+  /* Multi-layer gradient for a rich glow effect:
+     1. Inner soft blue halo (simulates atmospheric scattering)
+     2. Mid-range dark-blue vignette (space transition)
+     3. Outer deep-space darkness                                           */
+  background:
+    /* Layer 1 — blue atmospheric halo */
+    radial-gradient(
+      ellipse 55% 55% at 50% 50%,
+      rgba(60, 140, 255, calc(0.12 * var(--glow-strength))) 0%,
+      rgba(30, 80, 200, calc(0.08 * var(--glow-strength))) 40%,
+      transparent 65%
+    ),
+    /* Layer 2 — deep vignette */
+    radial-gradient(
+      ellipse at 50% 50%,
+      transparent 25%,
+      rgba(5, 20, 70, calc(0.35 * var(--glow-strength))) 55%,
+      rgba(2, 8, 35, calc(0.75 * var(--glow-strength))) 100%
+    );
 }
 
 /* -------------------------------------------------------------------------
@@ -67,14 +113,19 @@ html, body {
 }
 
 .panel-logo {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #3a7bd5 0%, #00aaff 100%);
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.panel-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .logo-dot {
@@ -124,8 +175,6 @@ html, body {
   margin-bottom: 20px;
 }
 
-/* Nav bar: back button + breadcrumb */
-
 .nav-bar {
   display: flex;
   align-items: center;
@@ -168,14 +217,10 @@ html, body {
   color: rgba(255, 255, 255, 0.3);
 }
 
-/* Nav body — clips slide animations */
-
 .nav-body {
   position: relative;
   overflow: hidden;
 }
-
-/* Nav list and buttons */
 
 .nav-list {
   display: flex;
@@ -236,9 +281,6 @@ html, body {
   line-height: 1.55;
 }
 
-/* Location image — only rendered when the data has an "image" field.
-   Fades in after the sidebar finishes expanding (0.25s delay matches
-   the width transition so the image doesn't appear before there's room). */
 .location-detail-image {
   display: block;
   width: 100%;
@@ -258,8 +300,6 @@ html, body {
    Nav view transitions
    ---------------------------------------------------------------------- */
 
-/* Exiting views become absolute so they don't affect nav-body height.
-   The incoming (normal-flow) view determines the panel height. */
 .nav-view.exit-forward,
 .nav-view.exit-backward {
   position: absolute;
@@ -294,7 +334,7 @@ html, body {
 .nav-view.exit-forward   { animation: exit-fwd  0.22s ease forwards; }
 .nav-view.exit-backward  { animation: exit-bwd  0.22s ease forwards; }
 
-/* Satellite toggle */
+/* Layer toggles */
 
 .layer-toggle {
   display: flex;
@@ -419,7 +459,6 @@ html, body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Content fade-in — delayed so it appears after the panel slides in */
 #ai-panel.visible .ai-panel-inner > * {
   animation: ai-content-fade 0.3s ease 0.25s both;
 }
@@ -460,7 +499,6 @@ html, body {
   line-height: 1.3;
 }
 
-/* Context block — shows current location name + path */
 .ai-context {
   margin-bottom: 12px;
   min-height: 32px;
@@ -485,7 +523,6 @@ html, body {
   color: rgba(255, 255, 255, 0.38);
 }
 
-/* Input row */
 .ai-input-row {
   display: flex;
   align-items: center;
@@ -545,7 +582,6 @@ html, body {
   border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
-/* Bottom-right controls: arrange groups horizontally side-by-side */
 .maplibregl-ctrl-bottom-right {
   display: flex;
   flex-direction: row-reverse;
@@ -553,7 +589,6 @@ html, body {
   gap: 8px;
 }
 
-/* Within the navigation ctrl-group in bottom-right, lay buttons out in a row */
 .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group {
   display: flex;
   flex-direction: row;

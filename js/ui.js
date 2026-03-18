@@ -13,7 +13,7 @@ import {
   getCurrentState,
   isAtTopLevel,
 } from './events.js';
-import { setSatelliteVisible } from './map.js';
+import { setSatelliteVisible, setNightMode, setCloudsVisible } from './map.js';
 
 // ---------------------------------------------------------------------------
 // Init
@@ -52,7 +52,7 @@ function renderShell() {
     <div class="panel">
 
       <header class="panel-header">
-        <div class="panel-logo"><span class="logo-dot"></span></div>
+        <div class="panel-logo"><img src="images/logo.png" alt="Earth Explorer logo" class="panel-logo-img" /></div>
         <div class="panel-title-group">
           <h1 class="panel-title">Earth Explorer</h1>
           <p class="panel-subtitle">Enzi</p>
@@ -78,6 +78,20 @@ function renderShell() {
           <span class="toggle-label-text">Satellite Imagery</span>
           <div class="toggle-switch">
             <input type="checkbox" id="satellite-toggle" />
+            <span class="toggle-track"></span>
+          </div>
+        </label>
+        <label class="layer-toggle">
+          <span class="toggle-label-text">City Lights</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="night-toggle" />
+            <span class="toggle-track"></span>
+          </div>
+        </label>
+        <label class="layer-toggle">
+          <span class="toggle-label-text">Clouds</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="clouds-toggle" />
             <span class="toggle-track"></span>
           </div>
         </label>
@@ -110,6 +124,14 @@ function bindStaticEvents(container) {
 
   container.querySelector('#satellite-toggle').addEventListener('change', e => {
     setSatelliteVisible(e.target.checked);
+  });
+
+  container.querySelector('#night-toggle').addEventListener('change', e => {
+    setNightMode(e.target.checked);
+  });
+
+  container.querySelector('#clouds-toggle').addEventListener('change', e => {
+    setCloudsVisible(e.target.checked);
   });
 
   container.querySelector('#world-view-btn').addEventListener('click', () => {
