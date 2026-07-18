@@ -23,11 +23,16 @@
   <!-- AI interaction panel (right side) -->
   <div id="ai-panel"></div>
 
+  <!-- Custom bottom bar: [Built by Xexin.] [Attribution] [Scale] [Nav] -->
+  <div id="bottom-bar">
+    <span class="built-by">Built by Xex.</span>
+  </div>
+
   <!--
     MapLibre GL JS loaded as a classic script so it registers
     the global `maplibregl` before the ES modules below run.
     Note: ES modules require a local web server (not file://).
-    Quick start: python -m http.server 8080
+    Quick start: node server.js (also proxies Enzi's AI chat — see .env.example)
   -->
   <script src="https://unpkg.com/maplibre-gl@4/dist/maplibre-gl.js"></script>
   <script type="module" src="js/app.js"></script>

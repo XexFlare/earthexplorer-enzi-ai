@@ -1,0 +1,121 @@
+country,city,hotspot,latitude,longitude,type,precision,confidence,source
+Malawi,Lilongwe,Parliament Building,-13.9522172,33.7879039,unknown,exact,high,osm
+Malawi,Lilongwe,Lilongwe Wildlife Centre,-13.9626,33.7873,unknown,area,low,original
+Malawi,Lilongwe,Binnie's Eats and Treats (Area 12),-13.9500,33.7800,unknown,area,low,original
+Malawi,Lilongwe,Old Town Market,-13.9700,33.7600,unknown,area,low,original
+Malawi,Lilongwe,Eden Estates,-13.9000,33.8200,hotel,estimated,medium,original
+Malawi,Salima,Lake Malawi (Senga Bay),-13.7300,34.6000,unknown,area,low,original
+Malawi,Salima,Senga Bay Beach,-13.7305,34.6030,unknown,area,low,original
+Malawi,Salima,Local Fishing Villages,-13.7500,34.5500,unknown,area,low,original
+Malawi,Salima,Waterfront Hotel,-13.7308,34.6020,unknown,area,low,original
+Malawi,Salima,Lake Malawi National Park,-14.0500,34.9000,unknown,estimated,medium,original
+Malawi,Blantyre,Mandala House,-15.7927173,35.0115058,museum,exact,high,osm
+Malawi,Blantyre,Mount Soche,-15.8000,35.0000,unknown,estimated,low,original
+Malawi,Blantyre,Chichiri Museum,-15.8010,35.0400,museum,estimated,low,original
+Malawi,Blantyre,Blantyre Market,-15.7900,35.0000,unknown,estimated,medium,original
+Malawi,Blantyre,La Caverna Art Gallery,-15.7700,35.0200,unknown,area,low,original
+Zambia,Lusaka,Cathedral of the Holy Cross,-15.4187674,28.3036670,unknown,exact,high,osm
+Zambia,Lusaka,Lusaka National Park,-15.4700,28.4500,unknown,estimated,medium,original
+Zambia,Lusaka,Kabwata Cultural Village,-15.4300,28.3000,landmark,estimated,medium,original
+Zambia,Lusaka,EastPark Mall,-15.4010,28.3530,unknown,area,low,original
+Zambia,Lusaka,Kalimba Reptile Park,-15.6000,28.3000,unknown,estimated,medium,original
+Zambia,Livingstone,Victoria Falls,-17.9243,25.8560,unknown,estimated,low,original
+Zambia,Livingstone,Zambezi River,-17.9000,25.8000,unknown,estimated,medium,original
+Zambia,Livingstone,Livingstone Museum,-17.8479840,25.8551526,museum,exact,high,osm
+Zambia,Livingstone,Zambezi Sunset Cruise,-17.8700,25.8200,unknown,area,low,original
+Zambia,Livingstone,Devil’s Pool,-17.9230,25.8570,unknown,estimated,low,original
+South Africa,Johannesburg,Sandton Square,-26.1070,28.0567,unknown,estimated,low,original
+South Africa,Johannesburg,Johannesburg Botanical Garden,-26.1670,27.9990,unknown,area,low,original
+South Africa,Johannesburg,Constitution Hill,-26.1885860,28.0425549,landmark,exact,high,osm
+South Africa,Johannesburg,Maboneng Precinct,-26.2035757,28.0599517,unknown,exact,high,osm
+South Africa,Johannesburg,Neighbourgoods Market,-26.2040,28.0340,unknown,estimated,medium,original
+South Africa,Cape Town,Table Mountain,-33.9590635,18.4038716,unknown,exact,high,osm
+South Africa,Cape Town,Camps Bay Beach,-33.9500,18.3770,beach,estimated,medium,original
+South Africa,Cape Town,Robben Island,-33.8053000,18.3688835,unknown,exact,high,osm
+South Africa,Cape Town,V&A Waterfront,-33.9060023,18.4195264,unknown,exact,high,osm
+South Africa,Cape Town,Bo-Kaap,-33.9205609,18.4128809,unknown,exact,high,osm
+Portugal,Lisbon,Belém Tower,38.6916,-9.2159,landmark,estimated,low,original
+Portugal,Lisbon,Tagus River Viewpoints,38.7077,-9.1366,unknown,area,low,original
+Portugal,Lisbon,Jerónimos Monastery,38.6978,-9.2068,unknown,estimated,low,original
+Portugal,Lisbon,Time Out Market,38.7067,-9.1436,unknown,estimated,medium,original
+Portugal,Lisbon,LX Factory,38.7036,-9.1780,unknown,estimated,low,original
+Portugal,Porto,Dom Luís I Bridge,41.1399,-8.6093,unknown,area,low,original
+Portugal,Porto,Douro River,41.1406,-8.6100,river,estimated,low,original
+Portugal,Porto,Livraria Lello,41.1468317,-8.6148485,unknown,exact,high,osm
+Portugal,Porto,Ribeira District,41.1408,-8.6143,unknown,estimated,low,original
+Portugal,Porto,Foz do Douro,41.1508459,-8.6691083,unknown,exact,high,osm
+United States,Nashville,Grand Ole Opry,36.2069577,-86.6918054,unknown,exact,high,osm
+United States,Nashville,Cumberland River,36.1640,-86.7770,unknown,estimated,medium,original
+United States,Nashville,Country Music Hall of Fame,36.1584,-86.7781,unknown,area,low,original
+United States,Nashville,Broadway Street,36.2259187,-86.6265761,unknown,exact,high,osm
+United States,Nashville,The Gulch,36.1530115,-86.7841015,unknown,exact,high,osm
+United States,Miami,South Beach,25.7825,-80.1300,unknown,estimated,medium,original
+United States,Miami,Everglades National Park,25.2866,-80.8987,unknown,estimated,medium,original
+United States,Miami,Vizcaya Museum and Gardens,25.7446992,-80.2115770,park,exact,high,osm
+United States,Miami,Ocean Drive,25.7691493,-80.1331398,unknown,exact,high,osm
+United States,Miami,Wynwood Walls,25.8011377,-80.1953188,landmark,exact,high,osm
+United States,New York,Statue of Liberty,40.6892532,-74.0445482,landmark,exact,high,osm
+United States,New York,Central Park,40.7851,-73.9683,park,estimated,medium,original
+United States,New York,Metropolitan Museum of Art,40.7794396,-73.9633825,museum,exact,high,osm
+United States,New York,Times Square,40.7572614,-73.9858998,unknown,exact,high,osm
+United States,New York,DUMBO,40.7029052,-73.9901180,unknown,exact,high,osm
+United States,Asheville,Biltmore Estate,35.5397,-82.5524,landmark,estimated,medium,original
+United States,Asheville,Blue Ridge Parkway,35.6001,-82.4960,unknown,estimated,medium,original
+United States,Asheville,River Arts District,35.5786,-82.5659,unknown,estimated,medium,original
+United States,Asheville,Downtown Asheville,35.5951,-82.5515,hotel,estimated,low,original
+United States,Asheville,Looking Glass Falls,35.3117,-82.7580,unknown,area,low,original
+United States,Austin,Texas State Capitol,30.2746911,-97.7405171,unknown,exact,high,osm
+United States,Austin,Lady Bird Lake,30.2500,-97.7330,unknown,estimated,medium,original
+United States,Austin,Blanton Museum of Art,30.2809591,-97.7374581,museum,exact,high,osm
+United States,Austin,South Congress Avenue,30.2165822,-97.7679193,unknown,exact,high,osm
+United States,Austin,Barton Springs Pool,30.2638447,-97.7701429,unknown,exact,high,osm
+Botswana,Gaborone,Three Dikgosi Monument,-24.6448864,25.9073762,unknown,exact,high,osm
+Botswana,Gaborone,Gaborone Game Reserve,-24.6407835,25.9595857,park,exact,high,osm
+Botswana,Gaborone,National Museum and Art Gallery,-24.6540,25.9080,unknown,area,low,original
+Botswana,Gaborone,Riverwalk Mall,-24.6590,25.9120,unknown,estimated,low,original
+Botswana,Gaborone,Kgale Hill,-24.6958813,25.8670921,unknown,exact,high,osm
+Denmark,Copenhagen,Nyhavn,55.6797360,12.5908855,landmark,exact,high,osm
+Denmark,Copenhagen,Tivoli Gardens,55.6736,12.5681,unknown,estimated,low,original
+Denmark,Copenhagen,National Museum of Denmark,55.6746,12.5730,museum,estimated,low,original
+Denmark,Copenhagen,Strøget,55.6799720,12.5834457,unknown,exact,high,osm
+Denmark,Copenhagen,Freetown Christiania,55.6735,12.5960,unknown,estimated,low,original
+Germany,Berlin,Brandenburg Gate,52.5163,13.3777,landmark,estimated,low,original
+Germany,Berlin,Tiergarten,52.5097776,13.3572597,unknown,exact,high,osm
+Germany,Berlin,Berlin Wall Memorial,52.5351,13.3903,landmark,estimated,low,original
+Germany,Berlin,Alexanderplatz,52.5219814,13.4136358,unknown,exact,high,osm
+Germany,Berlin,RAW-Gelände,52.5070127,13.4543002,unknown,exact,high,osm
+Germany,Munich,Marienplatz,48.1371436,11.5753989,unknown,exact,high,osm
+Germany,Munich,English Garden,48.1640,11.6050,park,estimated,low,original
+Germany,Munich,BMW Museum,48.1769026,11.5590692,museum,exact,high,osm
+Germany,Munich,Viktualienmarkt,48.1355180,11.5761813,unknown,exact,high,osm
+Germany,Munich,Olympiapark,48.1730,11.5460,park,estimated,medium,original
+Germany,Hamburg,Elbphilharmonie,53.5412917,9.9842058,unknown,exact,high,osm
+Germany,Hamburg,Alster Lakes,53.5600,10.0000,unknown,area,low,original
+Germany,Hamburg,Miniatur Wunderland,53.5438229,9.9889448,landmark,exact,high,osm
+Germany,Hamburg,Reeperbahn,53.5496384,9.9574524,unknown,exact,high,osm
+Germany,Hamburg,Speicherstadt,53.5440149,9.9869792,landmark,exact,high,osm
+Mozambique,Maputo,Maputo Central Railway Station,-25.9708433,32.5641608,unknown,exact,high,osm
+Mozambique,Maputo,Maputo Elephant Reserve,-26.5000,32.8000,unknown,area,low,original
+Mozambique,Maputo,National Art Museum,-25.9680,32.5740,unknown,area,low,original
+Mozambique,Maputo,Fish Market,-25.9500,32.6000,unknown,area,low,original
+Mozambique,Maputo,Costa do Sol,-25.8938831,32.6460340,unknown,exact,high,osm
+Mozambique,Beira,Beira Lighthouse,-19.8430,34.8400,unknown,area,low,original
+Mozambique,Beira,Macuti Beach,-19.8200,34.8600,unknown,area,low,original
+Mozambique,Beira,Beira Cathedral,-19.8435,34.8380,unknown,area,low,original
+Mozambique,Beira,Beira Market,-19.8400,34.8300,unknown,area,low,original
+Mozambique,Beira,Savane River Estuary,-19.9000,34.9000,unknown,area,low,original
+Mozambique,Nacala,Port of Nacala,-14.5500,40.6700,unknown,area,low,original
+Mozambique,Nacala,Nacala Bay,-14.5600,40.6800,unknown,area,low,original
+Mozambique,Nacala,Local Fishing Villages,-14.5800,40.7000,unknown,area,low,original
+Mozambique,Nacala,Central Market,-14.5650,40.6850,unknown,estimated,low,original
+Mozambique,Nacala,Fernão Veloso Beach,-14.5300,40.6600,unknown,area,low,original
+New Zealand,Auckland,Sky Tower,-36.8484632,174.7621830,unknown,exact,high,osm
+New Zealand,Auckland,Mount Eden,-36.8816475,174.7619990,unknown,exact,high,osm
+New Zealand,Auckland,Auckland War Memorial Museum,-36.8607564,174.7778100,museum,exact,high,osm
+New Zealand,Auckland,Viaduct Harbour,-36.8432042,174.7606833,unknown,exact,high,osm
+New Zealand,Auckland,Piha Beach,-36.9560,174.4680,beach,estimated,medium,original
+Thailand,Bangkok,Grand Palace,13.7500,100.4913,landmark,estimated,low,original
+Thailand,Bangkok,Lumphini Park,13.7300,100.5410,park,estimated,low,original
+Thailand,Bangkok,Wat Pho,13.7466,100.4930,unknown,estimated,low,original
+Thailand,Bangkok,Chatuchak Market,13.7990,100.5530,unknown,estimated,low,original
+Thailand,Bangkok,Chinatown (Yaowarat),13.7390,100.5090,unknown,estimated,low,original

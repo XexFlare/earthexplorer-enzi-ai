@@ -1,1 +1,7 @@
 Notes for updates.
+
+Run with: node server.js
+This serves the site AND proxies Enzi's AI chat (POST /api/chat) so the
+OpenAI key never reaches the browser. Copy .env.example to .env and set
+OPENAI_API_KEY before running to enable real Enzi responses; without a
+key the site still works, chat just shows a fallback message.

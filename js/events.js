@@ -1,6 +1,6 @@
 // events.js — Navigation state and map coordination (STABLE VERSION)
 
-import { getMap, flyToCoords, flyToWorld } from './map.js';
+import { getMap, flyToCoords, flyToWorld, highlightCountry, clearCountryHighlight } from './map.js';
 import { toMapCenter } from './data.js';
 
 // ---------------------------------------------------------------------------
@@ -59,6 +59,7 @@ export function resetNavigation() {
   map.stop(); // kill any in-progress animation
 
   flyToWorld();
+  clearCountryHighlight();
 
   navChangeCallback?.({
     direction: 'backward',
@@ -90,10 +91,12 @@ function moveCamera(state) {
 
     case 'countries':
       flyToWorld();
+      clearCountryHighlight();
       break;
 
     case 'cities':
-      // no camera movement
+      // no camera movement — country glows in place on the full-earth view
+      if (state.country) highlightCountry(state.country.name);
       done();
       return;
 

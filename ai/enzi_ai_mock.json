@@ -1,0 +1,216 @@
+{
+  "introductions": [
+    "I am Enzi, your guide to this remarkable world.",
+    "I am Enzi… here to show you the beauty of our Earth.",
+    "I am Enzi, and I will take you where stories live.",
+    "I am Enzi… your companion across continents and cultures.",
+    "I am Enzi, your explorer through lands both familiar and unknown."
+  ],
+
+  "cta": [
+    "Shall I take you there?",
+    "Let me guide you further…",
+    "Would you like to explore this place?",
+    "Come… let us see it together.",
+    "Say the word, and we will go.",
+    "There is much more to discover…",
+    "Allow me to show you more.",
+    "Let us begin the journey."
+  ],
+
+  "fallbackGreeting": [
+    "Ahh… my honored guest",
+    "Welcome, my honored guest",
+    "Ahh… you have arrived, my honored guest"
+  ],
+
+  "fallbackFacts": [
+    "This land holds stories waiting to be discovered.",
+    "There is always something remarkable hidden here.",
+    "Every place has its own quiet magic.",
+    "History and beauty live side by side here.",
+    "There is more here than meets the eye."
+  ],
+
+  "countries": {
+    "Malawi": {
+      "greetings": [
+        "Muli bwanji, my honored guest",
+        "Ahh, muli bwanji… welcome",
+        "Warm greetings, my friend, from Malawi"
+      ],
+      "facts": [
+        "Lake Malawi holds more species of fish than almost any other lake on Earth.",
+        "Malawi is known as the Warm Heart of Africa for its welcoming people.",
+        "Much of Malawi’s life and culture revolves around the vast Lake Malawi.",
+        "Despite its size, Malawi is rich in natural beauty and biodiversity.",
+        "The lake here stretches like an ocean, yet it is entirely fresh water."
+      ]
+    },
+
+    "Zambia": {
+      "greetings": [
+        "Muli bwanji, my honored guest",
+        "Ahh, welcome… Zambia greets you",
+        "Warm greetings from the land of thunder"
+      ],
+      "facts": [
+        "Victoria Falls here is one of the largest waterfalls in the world.",
+        "Locals call it The Smoke That Thunders for its immense power.",
+        "The Zambezi River shapes much of Zambia’s natural beauty.",
+        "Zambia offers some of the most untouched wilderness in Africa.",
+        "The roar of the falls can be heard from miles away."
+      ]
+    },
+
+    "South Africa": {
+      "greetings": [
+        "Sawubona, my honored guest",
+        "Ahh, welcome to the south of the continent",
+        "Greetings from a land of great diversity"
+      ],
+      "facts": [
+        "South Africa is home to one of the most diverse ecosystems on Earth.",
+        "Cape Town is considered one of the most beautiful cities in the world.",
+        "The country has 11 official languages, reflecting its diversity.",
+        "Table Mountain is one of the oldest mountains in the world.",
+        "South Africa blends modern cities with vast natural landscapes."
+      ]
+    },
+
+    "Germany": {
+      "greetings": [
+        "Guten Tag, my honored guest",
+        "Ahh, welcome to Germany",
+        "A fine day to explore Germany, my friend"
+      ],
+      "facts": [
+        "Germany is home to more than 20,000 castles.",
+        "It has one of the largest economies in Europe.",
+        "The country is known for engineering excellence and precision.",
+        "Germany has vast forests, rivers, and historic towns.",
+        "Many fairy tales were inspired by Germany’s landscapes."
+      ]
+    },
+
+    "France": {
+      "greetings": [
+        "Bonjour, my honored guest",
+        "Ahh, bienvenue… welcome",
+        "A warm French welcome to you"
+      ],
+      "facts": [
+        "France is the most visited country in the world.",
+        "The Eiffel Tower was once meant to be temporary.",
+        "French cuisine is considered among the finest globally.",
+        "Paris is often called the city of light.",
+        "France has a rich artistic and cultural heritage."
+      ]
+    },
+
+    "Portugal": {
+      "greetings": [
+        "Olá, my honored guest",
+        "Ahh, welcome to Portugal",
+        "Warm greetings from Portugal"
+      ],
+      "facts": [
+        "Portugal has one of the oldest borders in Europe.",
+        "Lisbon is one of the oldest cities in Western Europe.",
+        "The country is known for its stunning coastline.",
+        "Portuguese explorers once mapped much of the world.",
+        "Portugal blends history, culture, and ocean beauty."
+      ]
+    },
+
+    "Botswana": {
+      "greetings": [
+        "Dumela, my honored guest",
+        "Ahh, welcome to Botswana",
+        "Warm greetings from the wild plains"
+      ],
+      "facts": [
+        "Botswana is home to the Okavango Delta, a vast inland delta.",
+        "It has one of the highest elephant populations in Africa.",
+        "Much of Botswana is dedicated to conservation.",
+        "The landscapes here are vast and untouched.",
+        "Wildlife thrives freely across Botswana’s terrain."
+      ]
+    },
+
+    "Mozambique": {
+      "greetings": [
+        "Olá, my honored guest",
+        "Ahh, welcome to Mozambique",
+        "Warm coastal greetings to you"
+      ],
+      "facts": [
+        "Mozambique has some of the most beautiful beaches in Africa.",
+        "The coastline stretches along the Indian Ocean.",
+        "Marine life here is rich and diverse.",
+        "The culture blends African and Portuguese influences.",
+        "Mozambique is known for its vibrant coastal life."
+      ]
+    },
+
+    "Denmark": {
+      "greetings": [
+        "God dag, my honored guest",
+        "Ahh, welcome to Denmark",
+        "Warm greetings from the north"
+      ],
+      "facts": [
+        "Denmark is consistently ranked among the happiest countries.",
+        "Copenhagen is known for its design and sustainability.",
+        "The country is made up of many islands.",
+        "Cycling is a major part of daily life here.",
+        "Denmark blends modern living with historic charm."
+      ]
+    },
+
+    "New Zealand": {
+      "greetings": [
+        "Kia ora, my honored guest",
+        "Ahh, welcome to New Zealand",
+        "Greetings from the land of stunning landscapes"
+      ],
+      "facts": [
+        "New Zealand has landscapes ranging from mountains to beaches.",
+        "It was the filming location for The Lord of the Rings.",
+        "The country is known for its natural beauty.",
+        "Outdoor adventure is a way of life here.",
+        "New Zealand is isolated yet incredibly diverse."
+      ]
+    },
+
+    "Thailand": {
+      "greetings": [
+        "Sawasdee, my honored guest",
+        "Ahh, welcome to Thailand",
+        "Warm greetings from Southeast Asia"
+      ],
+      "facts": [
+        "Thailand is known for its vibrant street food culture.",
+        "Bangkok is one of the most visited cities in the world.",
+        "The country has beautiful temples and beaches.",
+        "Thai cuisine is famous globally.",
+        "Thailand blends tradition with modern energy."
+      ]
+    },
+
+    "United States": {
+      "greetings": [
+        "Hello, my honored guest",
+        "Ahh, welcome to the United States",
+        "Greetings from a vast land of contrasts"
+      ],
+      "facts": [
+        "The United States spans multiple climates and landscapes.",
+        "It is home to some of the world’s largest cities.",
+        "National parks here protect vast natural wonders.",
+        "The country has a strong cultural and economic influence.",
+        "From deserts to forests, the diversity is immense."
+      ]
+    }
+  }
+}

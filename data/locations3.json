@@ -25,26 +25,26 @@
             {
               "name": "Binnie's Eats and Treats (Area 12)",
               "description": "A popular local spot in Area 12 offering a taste of everyday Lilongwe life.",
-              "coordinates": [-13.95, 33.78],
+              "coordinates": [-13.9500, 33.7800],
               "image": "images/malawi_lilongwe_binnies.jpg"
             },
             {
               "name": "Old Town Market",
               "description": "A vibrant marketplace showcasing local commerce and culture.",
-              "coordinates": [-13.97, 33.76],
+              "coordinates": [-13.9700, 33.7600],
               "image": "images/malawi-lilongwe-parliment.png"
             },
             {
               "name": "Eden Estates",
               "description": "A modern residential and lifestyle area with a local hidden gem feel.",
-              "coordinates": [-13.9, 33.82],
+              "coordinates": [-13.9000, 33.8200],
               "image": "images/malawi-lilongwe-ededn_estates.jpg"
             }
           ]
         },
         {
           "name": "Salima",
-          "coordinates": [-13.78, 34.45],
+          "coordinates": [-13.7800, 34.4500],
           "zoom": 14,
           "pitch": 60,
           "bearing": -15,
@@ -52,31 +52,31 @@
             {
               "name": "Lake Malawi (Senga Bay)",
               "description": "A major landmark on one of Africa's largest freshwater lakes.",
-              "coordinates": [-13.73, 34.6],
+              "coordinates": [-13.7300, 34.6000],
               "image": "images/malawi-salima_senga_bay_beach_malawi_1_7.jpg"
             },
             {
               "name": "Senga Bay Beach",
               "description": "A beautiful lakeside beach known for relaxation and views.",
-              "coordinates": [-13.7305, 34.603],
+              "coordinates": [-13.7305, 34.6030],
               "image": "images/malawi-salima-lake_malawi_1_2.jpeg"
             },
             {
               "name": "Local Fishing Villages",
               "description": "Traditional lakeside communities offering cultural experiences.",
-              "coordinates": [-13.75, 34.55],
+              "coordinates": [-13.7500, 34.5500],
               "image": "images/malawi-salima-lake_malawi_1_2.jpeg"
             },
             {
               "name": "Waterfront Hotel",
               "description": "A well-known lakeside destination for leisure and dining.",
-              "coordinates": [-13.7308, 34.602],
+              "coordinates": [-13.7308, 34.6020],
               "image": "images/malawi-salima_waterfront.jpg"
             },
             {
               "name": "Lake Malawi National Park",
               "description": "A protected UNESCO site known for biodiversity and lake ecosystems.",
-              "coordinates": [-14.05, 34.9],
+              "coordinates": [-14.0500, 34.9000],
               "image": "images/malawi_salima_malawi_salima_lake_malawi_national_park_1_4.jpeg"
             }
           ]
@@ -92,30 +92,30 @@
               "name": "Mandala House",
               "description": "One of the oldest buildings in Malawi with rich colonial history.",
               "coordinates": [-15.7927173, 35.0115058],
-              "image": "images/malawi_blantyre_mandala_house.jpg"
+              "image": "images/malawi_blantyre.jpg"
             },
             {
               "name": "Mount Soche",
               "description": "A scenic mountain offering hiking and panoramic views.",
-              "coordinates": [-15.8, 35],
+              "coordinates": [-15.8000, 35.0000],
               "image": "images/malawi_blantyre.jpg"
             },
             {
               "name": "Chichiri Museum",
               "description": "Malawi's national museum showcasing history and culture.",
-              "coordinates": [-15.801, 35.04],
-              "image": "images/malawi_blantyre_chichiri_museum.jpg"
+              "coordinates": [-15.8010, 35.0400],
+              "image": "images/malawi_blantyre.jpg"
             },
             {
               "name": "Blantyre Market",
               "description": "A bustling market reflecting local commerce and daily life.",
-              "coordinates": [-15.79, 35],
-              "image": "images/malawi_blantyre_market.jpg"
+              "coordinates": [-15.7900, 35.0000],
+              "image": "images/malawi_blantyre.jpg"
             },
             {
               "name": "La Caverna Art Gallery",
               "description": "A hidden artistic space featuring local artwork.",
-              "coordinates": [-15.77, 35.02],
+              "coordinates": [-15.7700, 35.0200],
               "image": "images/malawi_blantyre.jpg"
             }
           ]
@@ -135,32 +135,32 @@
             {
               "name": "Cathedral of the Holy Cross",
               "description": "A prominent cathedral and architectural landmark in Lusaka.",
-              "coordinates": [-15.4187674, 28.303667],
-              "image": "images/zambia_lusaka_cathedral_holy_cross.jpg"
+              "coordinates": [-15.4187674, 28.3036670],
+              "image": "images/zambia_lusaka.jpg"
             },
             {
               "name": "Lusaka National Park",
               "description": "A wildlife park located near the capital city.",
-              "coordinates": [-15.47, 28.45],
+              "coordinates": [-15.4700, 28.4500],
               "image": "images/zambia_lusaka.jpg"
             },
             {
               "name": "Kabwata Cultural Village",
               "description": "A traditional crafts market showcasing Zambian culture.",
-              "coordinates": [-15.43, 28.3],
-              "image": "images/zambia_lusaka_kabwata_cultural_village.jpg"
+              "coordinates": [-15.4300, 28.3000],
+              "image": "images/zambia_lusaka.jpg"
             },
             {
               "name": "EastPark Mall",
               "description": "A modern lifestyle and shopping destination.",
-              "coordinates": [-15.401, 28.353],
+              "coordinates": [-15.4010, 28.3530],
               "image": "images/zambia_lusaka.jpg"
             },
             {
               "name": "Kalimba Reptile Park",
               "description": "A unique attraction featuring reptiles and outdoor experiences.",
-              "coordinates": [-15.6, 28.3],
-              "image": "images/zambia_lusaka_kalimba_reptile_park.jpg"
+              "coordinates": [-15.6000, 28.3000],
+              "image": "images/zambia_lusaka.jpg"
             }
           ]
         },
@@ -174,32 +174,32 @@
             {
               "name": "Victoria Falls",
               "description": "One of the largest and most famous waterfalls in the world.",
-              "coordinates": [-17.9243, 25.856],
-              "image": "images/zambia_livingstone_victoria_falls.jpg"
+              "coordinates": [-17.9243, 25.8560],
+              "image": "images/zambia_falls.jpg"
             },
             {
               "name": "Zambezi River",
               "description": "An iconic river known for adventure and scenic beauty.",
-              "coordinates": [-17.9, 25.8],
-              "image": "images/zambia_livingstone_zambezi_river.jpg"
+              "coordinates": [-17.9000, 25.8000],
+              "image": "images/zambia_falls.jpg"
             },
             {
               "name": "Livingstone Museum",
               "description": "A museum showcasing Zambia's history and heritage.",
-              "coordinates": [-17.847984, 25.8551526],
-              "image": "images/zambia_livingstone_museum.jpg"
+              "coordinates": [-17.8479840, 25.8551526],
+              "image": "images/zambia_falls.jpg"
             },
             {
               "name": "Zambezi Sunset Cruise",
               "description": "A relaxing river experience popular with visitors.",
-              "coordinates": [-17.87, 25.82],
-              "image": "images/zambia_livingstone_sunset_cruise.jpg"
+              "coordinates": [-17.8700, 25.8200],
+              "image": "images/zambia_falls.jpg"
             },
             {
               "name": "Devil's Pool",
               "description": "A thrilling natural infinity pool at the edge of Victoria Falls.",
-              "coordinates": [-17.923, 25.857],
-              "image": "images/zambia_livingstone_devils_pool.jpg"
+              "coordinates": [-17.9230, 25.8570],
+              "image": "images/zambia_falls.jpg"
             }
           ]
         }
@@ -218,31 +218,31 @@
             {
               "name": "Sandton Square",
               "description": "Famous square featuring the Nelson Mandela statue.",
-              "coordinates": [-26.107, 28.0567],
-              "image": "images/southafrica_joburg_sandton_square.jpg"
+              "coordinates": [-26.1070, 28.0567],
+              "image": "images/southafrica_joburg.jpg"
             },
             {
               "name": "Johannesburg Botanical Garden",
               "description": "A peaceful green space in the city.",
-              "coordinates": [-26.167, 27.999],
-              "image": "images/southafrica_joburg_botanical_garden.jpg"
+              "coordinates": [-26.1670, 27.9990],
+              "image": "images/southafrica_joburg.jpg"
             },
             {
               "name": "Constitution Hill",
               "description": "A historic site representing South Africa's democracy.",
-              "coordinates": [-26.188586, 28.0425549],
-              "image": "images/southafrica_joburg_constitution_hill.jpg"
+              "coordinates": [-26.1885860, 28.0425549],
+              "image": "images/southafrica_joburg.jpg"
             },
             {
               "name": "Maboneng Precinct",
               "description": "A vibrant creative and lifestyle hub.",
               "coordinates": [-26.2035757, 28.0599517],
-              "image": "images/southafrica_joburg_maboneng.jpg"
+              "image": "images/southafrica_joburg.jpg"
             },
             {
               "name": "Neighbourgoods Market",
               "description": "A trendy weekend market with food and culture.",
-              "coordinates": [-26.204, 28.034],
+              "coordinates": [-26.2040, 28.0340],
               "image": "images/southafrica_joburg.jpg"
             }
           ]
@@ -258,31 +258,26 @@
               "name": "Table Mountain",
               "description": "An iconic flat-topped mountain overlooking Cape Town.",
               "coordinates": [-33.9590635, 18.4038716],
-              "image": "images/southafrica_capetown_table_mountain.jpg"
             },
             {
               "name": "Camps Bay Beach",
               "description": "A scenic beach with stunning views.",
-              "coordinates": [-33.95, 18.377],
-              "image": "images/southafrica_capetown_camps_bay.jpg"
+              "coordinates": [-33.9500, 18.3770],
             },
             {
               "name": "Robben Island",
               "description": "Historic island where Nelson Mandela was imprisoned.",
-              "coordinates": [-33.8053, 18.3688835],
-              "image": "images/southafrica_capetown_robben_island.jpg"
+              "coordinates": [-33.8053000, 18.3688835],
             },
             {
               "name": "V&A Waterfront",
               "description": "A popular shopping and entertainment destination.",
               "coordinates": [-33.9060023, 18.4195264],
-              "image": "images/southafrica_capetown_va_waterfront.jpg"
             },
             {
               "name": "Bo-Kaap",
               "description": "A colorful neighborhood rich in culture.",
               "coordinates": [-33.9205609, 18.4128809],
-              "image": "images/southafrica_capetown_bokaap.jpg"
             }
           ]
         }
@@ -301,38 +296,33 @@
             {
               "name": "Belém Tower",
               "description": "A 16th-century fortified tower and UNESCO World Heritage Site on the Tagus riverfront.",
-              "coordinates": [38.6916, -9.2159],
-              "image": "images/portugal_lisbon_belem_tower.jpg"
+              "coordinates": [38.6916, -9.2159]
             },
             {
               "name": "Tagus River Viewpoints",
               "description": "Scenic riverside promenades overlooking the wide estuary of the Tagus.",
-              "coordinates": [38.7077, -9.1366],
-              "image": "images/portugal_lisbon_tagus_river.jpg"
+              "coordinates": [38.7077, -9.1366]
             },
             {
               "name": "Jerónimos Monastery",
               "description": "A stunning Late Gothic monastery and UNESCO World Heritage Site in Belém.",
-              "coordinates": [38.6978, -9.2068],
-              "image": "images/portugal_lisbon_jeronimos_monastery.jpg"
+              "coordinates": [38.6978, -9.2068]
             },
             {
               "name": "Time Out Market",
               "description": "A celebrated food hall in Cais do Sodré bringing together Lisbon's best chefs.",
-              "coordinates": [38.7067, -9.1436],
-              "image": "images/portugal_lisbon_time_out_market.jpg"
+              "coordinates": [38.7067, -9.1436]
             },
             {
               "name": "LX Factory",
               "description": "A creative hub in a repurposed industrial complex with shops, restaurants and markets.",
-              "coordinates": [38.7036, -9.178],
-              "image": "images/portugal_lisbon.jpg"
+              "coordinates": [38.7036, -9.1780]
             }
           ]
         },
         {
           "name": "Porto",
-          "coordinates": [41.1496, -8.611],
+          "coordinates": [41.1496, -8.6110],
           "zoom": 14,
           "pitch": 55,
           "bearing": -20,
@@ -340,32 +330,27 @@
             {
               "name": "Dom Luís I Bridge",
               "description": "An iconic double-deck iron arch bridge spanning the Douro River between Porto and Vila Nova de Gaia.",
-              "coordinates": [41.1399, -8.6093],
-              "image": "images/portugal_porto_dom_luis_bridge.jpg"
+              "coordinates": [41.1399, -8.6093]
             },
             {
               "name": "Douro River",
               "description": "The historic river that winds through Porto, lined with wine cellars and traditional boats.",
-              "coordinates": [41.1406, -8.61],
-              "image": "images/portugal_porto_douro_river.jpg"
+              "coordinates": [41.1406, -8.6100]
             },
             {
               "name": "Livraria Lello",
               "description": "One of the world's most beautiful bookshops, featuring a sweeping Art Nouveau staircase.",
-              "coordinates": [41.1468317, -8.6148485],
-              "image": "images/portugal_porto_livraria_lello.jpg"
+              "coordinates": [41.1468317, -8.6148485]
             },
             {
               "name": "Ribeira District",
               "description": "Porto's historic waterfront quarter of colourful houses and riverside cafés.",
-              "coordinates": [41.1408, -8.6143],
-              "image": "images/portugal_porto_ribeira.jpg"
+              "coordinates": [41.1408, -8.6143]
             },
             {
               "name": "Foz do Douro",
               "description": "The tranquil neighbourhood where the Douro River meets the Atlantic Ocean.",
-              "coordinates": [41.1508459, -8.6691083],
-              "image": "images/portugal_porto_foz_do_douro.jpg"
+              "coordinates": [41.1508459, -8.6691083]
             }
           ]
         }
@@ -384,32 +369,27 @@
             {
               "name": "Grand Ole Opry",
               "description": "The iconic home of country music, hosting live performances since 1925.",
-              "coordinates": [36.2069577, -86.6918054],
-              "image": "images/usa_nashville_grand_ole_opry.jpg"
+              "coordinates": [36.2069577, -86.6918054]
             },
             {
               "name": "Cumberland River",
               "description": "The scenic waterway winding through downtown Nashville, popular for walks and cruises.",
-              "coordinates": [36.164, -86.777],
-              "image": "images/usa_nashville_cumberland_river.jpg"
+              "coordinates": [36.1640, -86.7770]
             },
             {
               "name": "Country Music Hall of Fame",
               "description": "A world-class museum celebrating the history and legends of country music.",
-              "coordinates": [36.1584, -86.7781],
-              "image": "images/usa_nashville_country_music_hall_of_fame.jpg"
+              "coordinates": [36.1584, -86.7781]
             },
             {
               "name": "Broadway Street",
               "description": "Nashville's legendary honky-tonk strip, alive with live music and neon signs.",
-              "coordinates": [36.2259187, -86.6265761],
-              "image": "images/usa_nashville_broadway.jpg"
+              "coordinates": [36.2259187, -86.6265761]
             },
             {
               "name": "The Gulch",
               "description": "A trendy urban neighbourhood known for street art, dining and the Instagram-famous wings mural.",
-              "coordinates": [36.1530115, -86.7841015],
-              "image": "images/usa_nashville_the_gulch.jpg"
+              "coordinates": [36.1530115, -86.7841015]
             }
           ]
         },
@@ -423,38 +403,33 @@
             {
               "name": "South Beach",
               "description": "Miami's world-famous stretch of white sand beach lined with Art Deco hotels.",
-              "coordinates": [25.7825, -80.13],
-              "image": "images/usa_miami_south_beach.jpg"
+              "coordinates": [25.7825, -80.1300]
             },
             {
               "name": "Everglades National Park",
               "description": "A vast subtropical wilderness and UNESCO World Heritage Site teeming with wildlife.",
-              "coordinates": [25.2866, -80.8987],
-              "image": "images/usa_miami_everglades.jpg"
+              "coordinates": [25.2866, -80.8987]
             },
             {
               "name": "Vizcaya Museum and Gardens",
               "description": "A stunning Italian Renaissance-style villa and gardens on Biscayne Bay.",
-              "coordinates": [25.7446992, -80.211577],
-              "image": "images/usa_miami_vizcaya.jpg"
+              "coordinates": [25.7446992, -80.2115770]
             },
             {
               "name": "Ocean Drive",
               "description": "The iconic pastel-coloured Art Deco boulevard at the heart of South Beach.",
-              "coordinates": [25.7691493, -80.1331398],
-              "image": "images/usa_miami_ocean_drive.jpg"
+              "coordinates": [25.7691493, -80.1331398]
             },
             {
               "name": "Wynwood Walls",
               "description": "An open-air museum of large-scale murals by world-renowned street artists.",
-              "coordinates": [25.8011377, -80.1953188],
-              "image": "images/usa_miami_wynwood_walls.jpg"
+              "coordinates": [25.8011377, -80.1953188]
             }
           ]
         },
         {
           "name": "New York",
-          "coordinates": [40.7128, -74.006],
+          "coordinates": [40.7128, -74.0060],
           "zoom": 15,
           "pitch": 60,
           "bearing": -10,
@@ -462,32 +437,27 @@
             {
               "name": "Statue of Liberty",
               "description": "The iconic copper statue on Liberty Island, a universal symbol of freedom.",
-              "coordinates": [40.6892532, -74.0445482],
-              "image": "images/usa_newyork_statue_of_liberty.jpg"
+              "coordinates": [40.6892532, -74.0445482]
             },
             {
               "name": "Central Park",
               "description": "Manhattan's beloved 843-acre urban green space, a refuge of lakes, meadows and paths.",
-              "coordinates": [40.7851, -73.9683],
-              "image": "images/usa_newyork_central_park.jpg"
+              "coordinates": [40.7851, -73.9683]
             },
             {
               "name": "Metropolitan Museum of Art",
               "description": "One of the world's largest art museums, spanning 5,000 years of culture.",
-              "coordinates": [40.7794396, -73.9633825],
-              "image": "images/usa_newyork_met_museum.jpg"
+              "coordinates": [40.7794396, -73.9633825]
             },
             {
               "name": "Times Square",
               "description": "New York's dazzling commercial hub known for its bright lights and Broadway theatres.",
-              "coordinates": [40.7572614, -73.9858998],
-              "image": "images/usa_newyork_times_square.jpg"
+              "coordinates": [40.7572614, -73.9858998]
             },
             {
               "name": "DUMBO",
               "description": "A trendy Brooklyn neighbourhood with cobblestone streets and iconic Manhattan Bridge views.",
-              "coordinates": [40.7029052, -73.990118],
-              "image": "images/usa_newyork_dumbo.jpg"
+              "coordinates": [40.7029052, -73.9901180]
             }
           ]
         },
@@ -501,32 +471,27 @@
             {
               "name": "Biltmore Estate",
               "description": "America's largest private home, a 250-room Gilded Age chateau set in 8,000 acres.",
-              "coordinates": [35.5397, -82.5524],
-              "image": "images/usa_asheville_biltmore_estate.jpg"
+              "coordinates": [35.5397, -82.5524]
             },
             {
               "name": "Blue Ridge Parkway",
               "description": "A breathtaking scenic road running along the Appalachian highlands with sweeping mountain views.",
-              "coordinates": [35.6001, -82.496],
-              "image": "images/usa_asheville_blue_ridge_parkway.jpg"
+              "coordinates": [35.6001, -82.4960]
             },
             {
               "name": "River Arts District",
               "description": "A thriving creative quarter in former industrial buildings along the French Broad River.",
-              "coordinates": [35.5786, -82.5659],
-              "image": "images/usa_asheville_river_arts_district.jpg"
+              "coordinates": [35.5786, -82.5659]
             },
             {
               "name": "Downtown Asheville",
               "description": "A vibrant walkable city centre packed with independent shops, galleries and restaurants.",
-              "coordinates": [35.5951, -82.5515],
-              "image": "images/usa_asheville_downtown.jpg"
+              "coordinates": [35.5951, -82.5515]
             },
             {
               "name": "Looking Glass Falls",
               "description": "A spectacular 60-foot waterfall in Pisgah National Forest, easily accessible from the road.",
-              "coordinates": [35.3117, -82.758],
-              "image": "images/usa_asheville_looking_glass_falls.jpg"
+              "coordinates": [35.3117, -82.7580]
             }
           ]
         },
@@ -540,32 +505,27 @@
             {
               "name": "Texas State Capitol",
               "description": "The grand 1888 Renaissance Revival capitol building, taller than the US Capitol in Washington.",
-              "coordinates": [30.2746911, -97.7405171],
-              "image": "images/usa_austin_texas_capitol.jpg"
+              "coordinates": [30.2746911, -97.7405171]
             },
             {
               "name": "Lady Bird Lake",
               "description": "A reservoir on the Colorado River at the heart of Austin, perfect for kayaking and trail running.",
-              "coordinates": [30.25, -97.733],
-              "image": "images/usa_austin_lady_bird_lake.jpg"
+              "coordinates": [30.2500, -97.7330]
             },
             {
               "name": "Blanton Museum of Art",
               "description": "The University of Texas's encyclopedic art museum with one of the largest collections in the American South.",
-              "coordinates": [30.2809591, -97.7374581],
-              "image": "images/usa_austin_blanton_museum.jpg"
+              "coordinates": [30.2809591, -97.7374581]
             },
             {
               "name": "South Congress Avenue",
               "description": "Austin's eclectic 'SoCo' strip of vintage shops, food trucks and live music venues.",
-              "coordinates": [30.2165822, -97.7679193],
-              "image": "images/usa_austin_south_congress.jpg"
+              "coordinates": [30.2165822, -97.7679193]
             },
             {
               "name": "Barton Springs Pool",
               "description": "A beloved natural spring-fed swimming pool in Zilker Park, a true Austin institution.",
-              "coordinates": [30.2638447, -97.7701429],
-              "image": "images/usa_austin_barton_springs.jpg"
+              "coordinates": [30.2638447, -97.7701429]
             }
           ]
         }
@@ -584,32 +544,27 @@
             {
               "name": "Three Dikgosi Monument",
               "description": "",
-              "coordinates": [-24.6448864, 25.9073762],
-              "image": "images/botswana.jpg"
+              "coordinates": [-24.6448864, 25.9073762]
             },
             {
               "name": "Gaborone Game Reserve",
               "description": "",
-              "coordinates": [-24.6407835, 25.9595857],
-              "image": "images/botswana.jpg"
+              "coordinates": [-24.6407835, 25.9595857]
             },
             {
               "name": "National Museum and Art Gallery",
               "description": "",
-              "coordinates": [-24.654, 25.908],
-              "image": "images/botswana.jpg"
+              "coordinates": [-24.6540, 25.9080]
             },
             {
               "name": "Riverwalk Mall",
               "description": "",
-              "coordinates": [-24.659, 25.912],
-              "image": "images/botswana.jpg"
+              "coordinates": [-24.6590, 25.9120]
             },
             {
               "name": "Kgale Hill",
               "description": "",
-              "coordinates": [-24.6958813, 25.8670921],
-              "image": "images/botswana.jpg"
+              "coordinates": [-24.6958813, 25.8670921]
             }
           ]
         }
@@ -628,32 +583,27 @@
             {
               "name": "Nyhavn",
               "description": "",
-              "coordinates": [55.679736, 12.5908855],
-              "image": "images/denmark.jpg"
+              "coordinates": [55.6797360, 12.5908855]
             },
             {
               "name": "Tivoli Gardens",
               "description": "",
-              "coordinates": [55.6736, 12.5681],
-              "image": "images/denmark.jpg"
+              "coordinates": [55.6736, 12.5681]
             },
             {
               "name": "National Museum of Denmark",
               "description": "",
-              "coordinates": [55.6746, 12.573],
-              "image": "images/denmark.jpg"
+              "coordinates": [55.6746, 12.5730]
             },
             {
               "name": "Strøget",
               "description": "",
-              "coordinates": [55.679972, 12.5834457],
-              "image": "images/denmark.jpg"
+              "coordinates": [55.6799720, 12.5834457]
             },
             {
               "name": "Freetown Christiania",
               "description": "",
-              "coordinates": [55.6735, 12.596],
-              "image": "images/denmark.jpg"
+              "coordinates": [55.6735, 12.5960]
             }
           ]
         }
@@ -664,7 +614,7 @@
       "cities": [
         {
           "name": "Berlin",
-          "coordinates": [52.52, 13.405],
+          "coordinates": [52.5200, 13.4050],
           "zoom": 14,
           "pitch": 55,
           "bearing": 0,
@@ -672,38 +622,33 @@
             {
               "name": "Brandenburg Gate",
               "description": "",
-              "coordinates": [52.5163, 13.3777],
-              "image": "images/germany.jpg"
+              "coordinates": [52.5163, 13.3777]
             },
             {
               "name": "Tiergarten",
               "description": "",
-              "coordinates": [52.5097776, 13.3572597],
-              "image": "images/germany.jpg"
+              "coordinates": [52.5097776, 13.3572597]
             },
             {
               "name": "Berlin Wall Memorial",
               "description": "",
-              "coordinates": [52.5351, 13.3903],
-              "image": "images/germany.jpg"
+              "coordinates": [52.5351, 13.3903]
             },
             {
               "name": "Alexanderplatz",
               "description": "",
-              "coordinates": [52.5219814, 13.4136358],
-              "image": "images/germany.jpg"
+              "coordinates": [52.5219814, 13.4136358]
             },
             {
               "name": "RAW-Gelände",
               "description": "",
-              "coordinates": [52.5070127, 13.4543002],
-              "image": "images/germany.jpg"
+              "coordinates": [52.5070127, 13.4543002]
             }
           ]
         },
         {
           "name": "Munich",
-          "coordinates": [48.1351, 11.582],
+          "coordinates": [48.1351, 11.5820],
           "zoom": 14,
           "pitch": 55,
           "bearing": 0,
@@ -711,32 +656,27 @@
             {
               "name": "Marienplatz",
               "description": "",
-              "coordinates": [48.1371436, 11.5753989],
-              "image": "images/germany.jpg"
+              "coordinates": [48.1371436, 11.5753989]
             },
             {
               "name": "English Garden",
               "description": "",
-              "coordinates": [48.164, 11.605],
-              "image": "images/germany.jpg"
+              "coordinates": [48.1640, 11.6050]
             },
             {
               "name": "BMW Museum",
               "description": "",
-              "coordinates": [48.1769026, 11.5590692],
-              "image": "images/germany.jpg"
+              "coordinates": [48.1769026, 11.5590692]
             },
             {
               "name": "Viktualienmarkt",
               "description": "",
-              "coordinates": [48.135518, 11.5761813],
-              "image": "images/germany.jpg"
+              "coordinates": [48.1355180, 11.5761813]
             },
             {
               "name": "Olympiapark",
               "description": "",
-              "coordinates": [48.173, 11.546],
-              "image": "images/germany.jpg"
+              "coordinates": [48.1730, 11.5460]
             }
           ]
         },
@@ -750,32 +690,27 @@
             {
               "name": "Elbphilharmonie",
               "description": "",
-              "coordinates": [53.5412917, 9.9842058],
-              "image": "images/germany.jpg"
+              "coordinates": [53.5412917, 9.9842058]
             },
             {
               "name": "Alster Lakes",
               "description": "",
-              "coordinates": [53.56, 10],
-              "image": "images/germany.jpg"
+              "coordinates": [53.5600, 10.0000]
             },
             {
               "name": "Miniatur Wunderland",
               "description": "",
-              "coordinates": [53.5438229, 9.9889448],
-              "image": "images/germany.jpg"
+              "coordinates": [53.5438229, 9.9889448]
             },
             {
               "name": "Reeperbahn",
               "description": "",
-              "coordinates": [53.5496384, 9.9574524],
-              "image": "images/germany.jpg"
+              "coordinates": [53.5496384, 9.9574524]
             },
             {
               "name": "Speicherstadt",
               "description": "",
-              "coordinates": [53.5440149, 9.9869792],
-              "image": "images/germany.jpg"
+              "coordinates": [53.5440149, 9.9869792]
             }
           ]
         }
@@ -794,32 +729,27 @@
             {
               "name": "Maputo Central Railway Station",
               "description": "",
-              "coordinates": [-25.9708433, 32.5641608],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-25.9708433, 32.5641608]
             },
             {
               "name": "Maputo Elephant Reserve",
               "description": "",
-              "coordinates": [-26.5, 32.8],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-26.5000, 32.8000]
             },
             {
               "name": "National Art Museum",
               "description": "",
-              "coordinates": [-25.968, 32.574],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-25.9680, 32.5740]
             },
             {
               "name": "Fish Market",
               "description": "",
-              "coordinates": [-25.95, 32.6],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-25.9500, 32.6000]
             },
             {
               "name": "Costa do Sol",
               "description": "",
-              "coordinates": [-25.8938831, 32.646034],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-25.8938831, 32.6460340]
             }
           ]
         },
@@ -833,32 +763,27 @@
             {
               "name": "Beira Lighthouse",
               "description": "",
-              "coordinates": [-19.843, 34.84],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-19.8430, 34.8400]
             },
             {
               "name": "Macuti Beach",
               "description": "",
-              "coordinates": [-19.82, 34.86],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-19.8200, 34.8600]
             },
             {
               "name": "Beira Cathedral",
               "description": "",
-              "coordinates": [-19.8435, 34.838],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-19.8435, 34.8380]
             },
             {
               "name": "Beira Market",
               "description": "",
-              "coordinates": [-19.84, 34.83],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-19.8400, 34.8300]
             },
             {
               "name": "Savane River Estuary",
               "description": "",
-              "coordinates": [-19.9, 34.9],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-19.9000, 34.9000]
             }
           ]
         },
@@ -872,32 +797,27 @@
             {
               "name": "Port of Nacala",
               "description": "",
-              "coordinates": [-14.55, 40.67],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-14.5500, 40.6700]
             },
             {
               "name": "Nacala Bay",
               "description": "",
-              "coordinates": [-14.56, 40.68],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-14.5600, 40.6800]
             },
             {
               "name": "Local Fishing Villages",
               "description": "",
-              "coordinates": [-14.58, 40.7],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-14.5800, 40.7000]
             },
             {
               "name": "Central Market",
               "description": "",
-              "coordinates": [-14.565, 40.685],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-14.5650, 40.6850]
             },
             {
               "name": "Fernão Veloso Beach",
               "description": "",
-              "coordinates": [-14.53, 40.66],
-              "image": "images/mozambique.jpg"
+              "coordinates": [-14.5300, 40.6600]
             }
           ]
         }
@@ -916,32 +836,27 @@
             {
               "name": "Sky Tower",
               "description": "",
-              "coordinates": [-36.8484632, 174.762183],
-              "image": "images/new-zealand.jpg"
+              "coordinates": [-36.8484632, 174.7621830]
             },
             {
               "name": "Mount Eden",
               "description": "",
-              "coordinates": [-36.8816475, 174.761999],
-              "image": "images/new-zealand.jpg"
+              "coordinates": [-36.8816475, 174.7619990]
             },
             {
               "name": "Auckland War Memorial Museum",
               "description": "",
-              "coordinates": [-36.8607564, 174.77781],
-              "image": "images/new-zealand.jpg"
+              "coordinates": [-36.8607564, 174.7778100]
             },
             {
               "name": "Viaduct Harbour",
               "description": "",
-              "coordinates": [-36.8432042, 174.7606833],
-              "image": "images/new-zealand.jpg"
+              "coordinates": [-36.8432042, 174.7606833]
             },
             {
               "name": "Piha Beach",
               "description": "",
-              "coordinates": [-36.956, 174.468],
-              "image": "images/new-zealand.jpg"
+              "coordinates": [-36.9560, 174.4680]
             }
           ]
         }
@@ -960,32 +875,27 @@
             {
               "name": "Grand Palace",
               "description": "",
-              "coordinates": [13.75, 100.4913],
-              "image": "images/thailand.jpg"
+              "coordinates": [13.7500, 100.4913]
             },
             {
               "name": "Lumphini Park",
               "description": "",
-              "coordinates": [13.73, 100.541],
-              "image": "images/thailand.jpg"
+              "coordinates": [13.7300, 100.5410]
             },
             {
               "name": "Wat Pho",
               "description": "",
-              "coordinates": [13.7466, 100.493],
-              "image": "images/thailand.jpg"
+              "coordinates": [13.7466, 100.4930]
             },
             {
               "name": "Chatuchak Market",
               "description": "",
-              "coordinates": [13.799, 100.553],
-              "image": "images/thailand.jpg"
+              "coordinates": [13.7990, 100.5530]
             },
             {
               "name": "Chinatown (Yaowarat)",
               "description": "",
-              "coordinates": [13.739, 100.509],
-              "image": "images/thailand.jpg"
+              "coordinates": [13.7390, 100.5090]
             }
           ]
         }

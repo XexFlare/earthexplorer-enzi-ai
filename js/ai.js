@@ -1,19 +1,21 @@
-// ai.js — AI integration placeholder
+// ai.js — Enzi chat client
 //
-// Future capabilities planned for this module:
-//   - Natural language location search  ("Show me the Shire Highlands")
-//   - Contextual descriptions of the current map view
-//   - AI-guided exploration and narrated tours
-//   - Scene analysis using vision models
+// Talks to the /api/chat endpoint served by server.js, which holds the
+// OpenAI API key server-side and builds the system prompt that keeps
+// replies grounded in whatever location/country context is passed in.
 
-export async function queryAI(prompt, context = {}) {
-  console.log('[AI] Query received:', prompt, context);
-  // TODO: integrate Claude or another LLM via the Anthropic API
-  return { status: 'not_implemented', response: null };
-}
+export async function queryAI(message, context = {}) {
+  const res = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, context }),
+  });
 
-export async function describeView(center, zoom) {
-  console.log('[AI] Describe view — center:', center, 'zoom:', zoom);
-  // TODO: reverse geocode + LLM summary of the current map extent
-  return { status: 'not_implemented', description: null };
+  const data = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    throw new Error(data.error || `HTTP ${res.status}`);
+  }
+
+  return data.reply;
 }

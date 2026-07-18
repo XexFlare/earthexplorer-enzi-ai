@@ -13,7 +13,87 @@ import {
   getCurrentState,
   isAtTopLevel,
 } from './events.js';
-import { setSatelliteVisible, setNightMode, setCloudsVisible } from './map.js';
+import { setSatelliteVisible, setNightMode, setCloudsVisible, setEarthRotation } from './map.js';
+import { queryAI } from './ai.js';
+
+// ---------------------------------------------------------------------------
+// Country explorer state
+// ---------------------------------------------------------------------------
+
+let isExpanded = false;
+let cloudsVisible = true;   // clouds on by default; toggle label shows the next action
+let isRotating    = true;   // earth rotation on by default
+
+let timeMode = 'night'; // always start in night mode
+
+let CURATED_COUNTRIES = ['Malawi', 'South Africa', 'Portugal', 'United States'];
+
+async function getUserCountry() {
+  try {
+    const res  = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    return data.country_name ?? null;
+  } catch (err) {
+    console.warn('[IP] Country lookup failed:', err.message);
+    return null;
+  }
+}
+
+function isValidReplacement(countryName, allCountries) {
+  const excluded = ['Malawi', 'South Africa', 'United States'];
+  if (!countryName) return false;
+  const exists     = allCountries.some(c => c.name === countryName);
+  const isExcluded = excluded.includes(countryName);
+  return exists && !isExcluded;
+}
+
+function getEnvCountryOverride() {
+  if (typeof import.meta !== 'undefined' && import.meta.env)
+    return import.meta.env.VITE_COUNTRY_TEST;
+  if (typeof process !== 'undefined' && process.env)
+    return process.env.REACT_APP_COUNTRY_TEST;
+  if (typeof window !== 'undefined' && window.ENV)
+    return window.ENV.COUNTRY_TEST;
+  return null;
+}
+
+const RAW_ENV_COUNTRY = (getEnvCountryOverride() || '').trim();
+
+// ISO 3166-1 alpha-2 lookup for flag emoji generation
+const COUNTRY_ISO_CODES = {
+  'Afghanistan': 'AF', 'Albania': 'AL', 'Algeria': 'DZ', 'Angola': 'AO',
+  'Argentina': 'AR', 'Australia': 'AU', 'Austria': 'AT', 'Bangladesh': 'BD',
+  'Belgium': 'BE', 'Bolivia': 'BO', 'Botswana': 'BW', 'Brazil': 'BR',
+  'Cambodia': 'KH', 'Cameroon': 'CM', 'Canada': 'CA', 'Chile': 'CL',
+  'China': 'CN', 'Colombia': 'CO', 'Croatia': 'HR', 'Czech Republic': 'CZ',
+  'Denmark': 'DK', 'Egypt': 'EG', 'Ethiopia': 'ET', 'Finland': 'FI',
+  'France': 'FR', 'Germany': 'DE', 'Ghana': 'GH', 'Greece': 'GR',
+  'Hungary': 'HU', 'India': 'IN', 'Indonesia': 'ID', 'Ireland': 'IE',
+  'Israel': 'IL', 'Italy': 'IT', 'Japan': 'JP', 'Jordan': 'JO',
+  'Kenya': 'KE', 'Laos': 'LA', 'Lebanon': 'LB', 'Libya': 'LY',
+  'Malawi': 'MW', 'Malaysia': 'MY', 'Mali': 'ML', 'Mexico': 'MX',
+  'Morocco': 'MA', 'Mozambique': 'MZ', 'Myanmar': 'MM', 'Nepal': 'NP',
+  'Netherlands': 'NL', 'New Zealand': 'NZ', 'Nigeria': 'NG', 'Norway': 'NO',
+  'Pakistan': 'PK', 'Peru': 'PE', 'Philippines': 'PH', 'Poland': 'PL',
+  'Portugal': 'PT', 'Romania': 'RO', 'Russia': 'RU', 'Rwanda': 'RW',
+  'Saudi Arabia': 'SA', 'Senegal': 'SN', 'Serbia': 'RS', 'Singapore': 'SG',
+  'South Africa': 'ZA', 'South Korea': 'KR', 'Spain': 'ES', 'Sri Lanka': 'LK',
+  'Sudan': 'SD', 'Sweden': 'SE', 'Switzerland': 'CH', 'Syria': 'SY',
+  'Taiwan': 'TW', 'Tanzania': 'TZ', 'Thailand': 'TH', 'Tunisia': 'TN',
+  'Turkey': 'TR', 'Uganda': 'UG', 'Ukraine': 'UA',
+  'United Arab Emirates': 'AE', 'United Kingdom': 'GB', 'United States': 'US',
+  'Uruguay': 'UY', 'Venezuela': 'VE', 'Vietnam': 'VN', 'Yemen': 'YE',
+  'Zambia': 'ZM', 'Zimbabwe': 'ZW',
+};
+
+// Convert country name → regional indicator emoji pair
+function countryFlag(name) {
+  const iso = COUNTRY_ISO_CODES[name];
+  if (!iso) return '';
+  return [...iso.toUpperCase()].map(c =>
+    String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)
+  ).join('');
+}
 
 // ---------------------------------------------------------------------------
 // Init
@@ -26,12 +106,19 @@ export function initUI(containerId) {
   bindStaticEvents(container);
 
   initAIPanel();
+  initEnziHome();
 
   // Re-render nav area whenever navigation state changes.
   onNavChange(({ direction, state }) => {
+    // Collapse expanded explorer whenever navigation moves away from or resets to countries
+    if (isExpanded) {
+      isExpanded = false;
+      document.getElementById('ui-panel').classList.remove('country-explorer');
+    }
     updateNavBar(state);
     setSidebarExpanded(state.level === 'detail' && !!state.location?.image);
     setAIPanelVisible(state.level === 'detail', state);
+    setEnziHomeVisible(state.level === 'countries');
     transitionNavBody(renderForState(state), direction);
   });
 
@@ -41,6 +128,37 @@ export function initUI(containerId) {
   setSidebarExpanded(false);
   setAIPanelVisible(false);
   initNavBody(renderForState(initial));
+
+  // Apply night mode default after map layers are ready
+  setTimeout(() => {
+    setNightMode(true);
+    document.getElementById('tod-value').textContent = 'Night';
+    const nightOpt = document.querySelector('.tod-option[data-mode="night"]');
+    if (nightOpt) nightOpt.classList.add('tod-option--selected');
+  }, 100);
+
+  // Personalise the 3rd curated slot (Portugal) — ENV override takes priority over IP
+  getUserCountry().then(userCountry => {
+    const all = getCountries();
+    let finalCountry = null;
+
+    if (isValidReplacement(RAW_ENV_COUNTRY, all)) {
+      finalCountry = RAW_ENV_COUNTRY;
+    } else if (isValidReplacement(userCountry, all)) {
+      finalCountry = userCountry;
+    } else {
+      return;
+    }
+
+    if (CURATED_COUNTRIES.includes(finalCountry)) return;
+
+    CURATED_COUNTRIES[2] = finalCountry;
+    console.log('[IP] Using country:', finalCountry);
+
+    if (getCurrentState().level === 'countries') {
+      initNavBody(renderForState(getCurrentState()));
+    }
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -74,6 +192,27 @@ function renderShell() {
 
       <section class="panel-section">
         <h2 class="section-label">Layers</h2>
+
+        <!-- 1. Time of Day -->
+        <div class="layer-toggle time-of-day-row" id="time-of-day-row">
+          <span class="toggle-label-text">Time of Day</span>
+          <div class="tod-selector" id="tod-selector">
+            <button class="tod-btn" id="tod-btn" type="button">
+              <span id="tod-value">Night</span>
+              <svg class="tod-chevron" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="tod-dropdown" id="tod-dropdown" hidden>
+              <button class="tod-option" data-mode="day"   type="button">Day</button>
+              <button class="tod-option" data-mode="night" type="button">Night</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Satellite Imagery -->
         <label class="layer-toggle">
           <span class="toggle-label-text">Satellite Imagery</span>
           <div class="toggle-switch">
@@ -81,20 +220,25 @@ function renderShell() {
             <span class="toggle-track"></span>
           </div>
         </label>
+
+        <!-- 3. Clouds -->
         <label class="layer-toggle">
-          <span class="toggle-label-text">City Lights</span>
-          <div class="toggle-switch">
-            <input type="checkbox" id="night-toggle" />
-            <span class="toggle-track"></span>
-          </div>
-        </label>
-        <label class="layer-toggle">
-          <span class="toggle-label-text">Clouds</span>
+          <span class="toggle-label-text" id="clouds-label">Clouds Off</span>
           <div class="toggle-switch">
             <input type="checkbox" id="clouds-toggle" />
             <span class="toggle-track"></span>
           </div>
         </label>
+
+        <!-- 4. Earth Rotation -->
+        <label class="layer-toggle">
+          <span class="toggle-label-text" id="rotation-label">Earth Rotation Off</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="rotation-toggle" />
+            <span class="toggle-track"></span>
+          </div>
+        </label>
+
       </section>
 
       <footer class="panel-footer">
@@ -119,6 +263,13 @@ function renderShell() {
 
 function bindStaticEvents(container) {
   container.querySelector('#back-btn').addEventListener('click', () => {
+    if (isExpanded) {
+      isExpanded = false;
+      document.getElementById('ui-panel').classList.remove('country-explorer');
+      transitionNavBody(renderForState(getCurrentState()), 'backward');
+      updateNavBar(getCurrentState());
+      return;
+    }
     navigateBack();
   });
 
@@ -126,12 +277,52 @@ function bindStaticEvents(container) {
     setSatelliteVisible(e.target.checked);
   });
 
-  container.querySelector('#night-toggle').addEventListener('change', e => {
-    setNightMode(e.target.checked);
+  // Time of Day — dropdown toggle
+  container.querySelector('#tod-btn').addEventListener('click', () => {
+    const dropdown = document.getElementById('tod-dropdown');
+    dropdown.hidden = !dropdown.hidden;
+    document.getElementById('tod-btn').classList.toggle('tod-btn--open', !dropdown.hidden);
   });
 
+  // Time of Day — option selection
+  container.querySelectorAll('.tod-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      timeMode = opt.dataset.mode;
+      setNightMode(timeMode === 'night');
+      document.getElementById('tod-value').textContent =
+        timeMode === 'night' ? 'Night' : 'Day';
+      // Mark selected option
+      container.querySelectorAll('.tod-option').forEach(o =>
+        o.classList.toggle('tod-option--selected', o.dataset.mode === timeMode)
+      );
+      document.getElementById('tod-dropdown').hidden = true;
+      document.getElementById('tod-btn').classList.remove('tod-btn--open');
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', e => {
+    const selector = document.getElementById('tod-selector');
+    if (selector && !selector.contains(e.target)) {
+      document.getElementById('tod-dropdown').hidden = true;
+      document.getElementById('tod-btn').classList.remove('tod-btn--open');
+    }
+  });
+
+  // Clouds (inverted: checked = OFF)
   container.querySelector('#clouds-toggle').addEventListener('change', e => {
-    setCloudsVisible(e.target.checked);
+    cloudsVisible = !e.target.checked;
+    setCloudsVisible(cloudsVisible);
+    document.getElementById('clouds-label').textContent =
+      cloudsVisible ? 'Clouds Off' : 'Clouds On';
+  });
+
+  // Earth Rotation (inverted: checked = OFF, same pattern as clouds)
+  container.querySelector('#rotation-toggle').addEventListener('change', e => {
+    isRotating = !e.target.checked;
+    setEarthRotation(isRotating);
+    document.getElementById('rotation-label').textContent =
+      isRotating ? 'Earth Rotation Off' : 'Earth Rotation On';
   });
 
   container.querySelector('#world-view-btn').addEventListener('click', () => {
@@ -144,7 +335,7 @@ function bindStaticEvents(container) {
 // ---------------------------------------------------------------------------
 
 function updateNavBar(state) {
-  document.getElementById('back-btn').hidden = isAtTopLevel();
+  document.getElementById('back-btn').hidden = isAtTopLevel() && !isExpanded;
 
   const labels = {
     countries: 'Explore',
@@ -171,11 +362,66 @@ function renderForState(state) {
 }
 
 function renderCountries() {
-  return navList(
-    getCountries().map((c, i) => navBtn(i, 'country', c.name,
-      `${c.cities.length} ${c.cities.length === 1 ? 'city' : 'cities'}`
-    ))
-  );
+  return isExpanded ? renderExpandedCountries() : renderCuratedCountries();
+}
+
+function renderCuratedCountries() {
+  const all = getCountries();
+  const total = all.length;
+
+  // Preview: countries not in the curated list, sorted A→Z, first 3
+  const preview = all
+    .filter(c => !CURATED_COUNTRIES.includes(c.name))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(0, 3)
+    .map(c => c.name);
+
+  const previewText = preview.length
+    ? `${preview.join(', ')} and more`
+    : '';
+
+  const curatedHtml = CURATED_COUNTRIES.map(name => {
+    const country = all.find(c => c.name === name);
+    if (!country) return '';
+    const n = country.cities.length;
+    return navBtn(all.indexOf(country), 'country', name,
+      `${n} ${n === 1 ? 'city' : 'cities'}`);
+  }).join('');
+
+  const ctaHtml = `
+    <button class="nav-btn nav-btn-cta" data-action="expand">
+      <div class="nav-btn-cta-body">
+        <span class="nav-btn-primary">See All ${total} Countries</span>
+        ${previewText ? `<span class="nav-btn-secondary">${previewText}</span>` : ''}
+      </div>
+      <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  `;
+
+  return `<div class="nav-list">${curatedHtml}${ctaHtml}</div>`;
+}
+
+function renderExpandedCountries() {
+  const all = getCountries();
+  const sorted = [...all].sort((a, b) => a.name.localeCompare(b.name));
+
+  const rows = sorted.map(c => {
+    const idx = all.indexOf(c);
+    const n   = c.cities.length;
+    const flag = countryFlag(c.name);
+    return `
+      <button class="nav-btn country-row" data-action="country" data-index="${idx}">
+        <span class="country-row-name">${c.name}</span>
+        <span class="country-row-cities">${n} ${n === 1 ? 'city' : 'cities'}</span>
+        ${flag ? `<span class="country-row-flag">${flag}</span>` : ''}
+      </button>
+    `;
+  }).join('');
+
+  return `<div class="nav-list">${rows}</div>`;
 }
 
 function renderCities(country) {
@@ -305,7 +551,19 @@ function handleNavAction(btn) {
   const idx    = parseInt(btn.dataset.index, 10);
   const state  = getCurrentState();
 
-  if (action === 'country') {
+  if (action === 'expand') {
+    isExpanded = true;
+    document.getElementById('ui-panel').classList.add('country-explorer');
+    transitionNavBody(renderForState(getCurrentState()), 'forward');
+    updateNavBar(getCurrentState());
+    return;
+
+  } else if (action === 'country') {
+    // Collapse explorer panel before navigating
+    if (isExpanded) {
+      isExpanded = false;
+      document.getElementById('ui-panel').classList.remove('country-explorer');
+    }
     const country = getCountries()[idx];
     if (country) navigateTo({ level: 'cities', country });
 
@@ -320,8 +578,54 @@ function handleNavAction(btn) {
 }
 
 // ---------------------------------------------------------------------------
-// AI Panel
+// Shared chat-bubble helpers — used by both the location AI panel and the
+// Enzi homepage widget so replies render and animate the same way everywhere.
 // ---------------------------------------------------------------------------
+
+async function typeIntoElement(text, el, speed = 20) {
+  el.textContent = '';
+  for (let i = 0; i < text.length; i++) {
+    el.textContent += text[i];
+    if (el.parentElement) el.parentElement.scrollTop = el.parentElement.scrollHeight;
+    await new Promise(r => setTimeout(r, speed));
+  }
+}
+
+function appendMessageBubble(container, role, text) {
+  if (!container) return null;
+  const bubble = document.createElement('div');
+  bubble.className = `ai-message ai-message--${role}`;
+  bubble.textContent = text;
+  container.appendChild(bubble);
+  container.scrollTop = container.scrollHeight;
+  return bubble;
+}
+
+function appendThinkingBubble(container) {
+  if (!container) return null;
+  const bubble = document.createElement('div');
+  bubble.className = 'ai-message ai-message--enzi ai-message--thinking';
+  bubble.innerHTML = '<span class="ai-thinking-dot"></span><span class="ai-thinking-dot"></span><span class="ai-thinking-dot"></span>';
+  container.appendChild(bubble);
+  container.scrollTop = container.scrollHeight;
+  return bubble;
+}
+
+async function typeReplyBubble(container, text) {
+  if (!container) return;
+  const bubble = document.createElement('div');
+  bubble.className = 'ai-message ai-message--enzi';
+  container.appendChild(bubble);
+  await typeIntoElement(text, bubble, 15);
+  container.scrollTop = container.scrollHeight;
+}
+
+// ---------------------------------------------------------------------------
+// AI Panel — chat locked to whatever location is currently open
+// ---------------------------------------------------------------------------
+
+let aiHistory  = [];
+let aiPending  = false;
 
 function initAIPanel() {
   const panel = document.getElementById('ai-panel');
@@ -334,6 +638,7 @@ function initAIPanel() {
         <span class="ai-title">Ask Earth Enzi AI about this location…</span>
       </div>
       <div class="ai-context" id="ai-context"></div>
+      <div class="ai-messages" id="ai-messages"></div>
       <div class="ai-input-row">
         <input id="ai-input" type="text" placeholder="Ask anything…" autocomplete="off" />
         <span class="ai-input-hint">↵ Enter</span>
@@ -341,19 +646,45 @@ function initAIPanel() {
     </div>
   `;
 
-  document.getElementById('ai-input').addEventListener('keydown', e => {
+  const input = document.getElementById('ai-input');
+  input.addEventListener('keydown', async e => {
     if (e.key !== 'Enter') return;
-    const query = e.target.value.trim();
-    if (!query) return;
+    const query = input.value.trim();
+    if (!query || aiPending) return;
+
     const state = getCurrentState();
-    console.log('[AI] Query:', query);
-    console.log('[AI] Context:', {
-      locationName: state.location?.name        ?? null,
-      cityName:     state.city?.name            ?? null,
-      countryName:  state.country?.name         ?? null,
-      description:  state.location?.description ?? null,
-    });
-    e.target.value = '';
+    input.value = '';
+    input.disabled = true;
+    aiPending = true;
+
+    const messages = document.getElementById('ai-messages');
+    appendMessageBubble(messages, 'user', query);
+    aiHistory.push({ role: 'user', content: query });
+
+    const thinking = appendThinkingBubble(messages);
+
+    try {
+      const reply = await queryAI(query, {
+        mode: 'location',
+        location: state.location?.name ?? '',
+        city: state.city?.name ?? '',
+        country: state.country?.name ?? '',
+        description: state.location?.description ?? '',
+        knownPlaces: getCountries().map(c => c.name),
+        history: aiHistory,
+      });
+      thinking?.remove();
+      await typeReplyBubble(messages, reply);
+      aiHistory.push({ role: 'assistant', content: reply });
+    } catch (err) {
+      console.warn('[AI] Chat failed:', err.message);
+      thinking?.remove();
+      await typeReplyBubble(messages, 'Enzi is resting right now… try again in a moment.');
+    } finally {
+      aiPending = false;
+      input.disabled = false;
+      input.focus();
+    }
   });
 }
 
@@ -362,6 +693,12 @@ function setAIPanelVisible(visible, state = null) {
   if (!panel) return;
   panel.classList.toggle('visible', visible);
   if (visible && state) updateAIContext(state);
+}
+
+function resetAIThread() {
+  aiHistory = [];
+  const messages = document.getElementById('ai-messages');
+  if (messages) messages.innerHTML = '';
 }
 
 function updateAIContext(state) {
@@ -375,4 +712,159 @@ function updateAIContext(state) {
     <p class="ai-context-location">${state.location.name}</p>
     <p class="ai-context-path">${state.city?.name ?? ''}, ${state.country?.name ?? ''}</p>
   `;
+  // A fresh location means a fresh conversation — Enzi shouldn't remember
+  // the last location's chat once you've navigated somewhere new.
+  resetAIThread();
+}
+
+// ---------------------------------------------------------------------------
+// Enzi Homepage AI — top-right presence, clickable to reply or fly there
+// ---------------------------------------------------------------------------
+
+let enziSelectedCountry = null;
+let enziExpanded        = false;
+let enziHistory         = [];
+let enziPending         = false;
+
+async function loadEnziMock() {
+  const url = new URL('../ai/enzi_ai_mock.json', import.meta.url).href;
+  const res  = await fetch(url);
+  return res.json();
+}
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function buildEnziMessage(country, data) {
+  const countryData = data.countries[country];
+  const greeting = countryData?.greetings?.length
+    ? pickRandom(countryData.greetings)
+    : pickRandom(data.fallbackGreeting);
+  const intro = pickRandom(data.introductions);
+  const fact  = countryData?.facts?.length
+    ? pickRandom(countryData.facts)
+    : pickRandom(data.fallbackFacts);
+  const cta = pickRandom(data.cta);
+  return [
+    `${greeting}…`,
+    intro,
+    `Today, I bring you to ${country}. ${fact}`,
+    cta,
+  ];
+}
+
+async function typeLines(lines, container) {
+  container.innerHTML = '';
+  for (const line of lines) {
+    const el = document.createElement('div');
+    container.appendChild(el);
+    await typeIntoElement(line, el, 35);
+    await new Promise(r => setTimeout(r, 250));
+  }
+}
+
+function initEnziHome() {
+  if (document.getElementById('enzi-home')) return;
+
+  const widget = document.createElement('div');
+  widget.id        = 'enzi-home';
+  widget.innerHTML = `
+    <div class="enzi-home-sphere">
+      <span class="ai-dot"></span>
+    </div>
+    <div class="enzi-home-content">
+      <div class="enzi-home-body" id="enzi-text"></div>
+      <div class="ai-messages enzi-home-messages" id="enzi-messages"></div>
+      <div class="enzi-home-actions" id="enzi-actions">
+        <div class="ai-input-row">
+          <input id="enzi-input" type="text" placeholder="Reply to Enzi…" autocomplete="off" />
+          <span class="ai-input-hint">↵ Enter</span>
+        </div>
+        <button class="world-btn enzi-take-me-btn" id="enzi-take-me-btn" type="button">Take me there</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(widget);
+
+  // Click anywhere on the widget (outside the reply box/button) to expand it.
+  widget.addEventListener('click', e => {
+    if (e.target.closest('#enzi-actions')) return;
+    enziExpanded = !enziExpanded;
+    widget.classList.toggle('expanded', enziExpanded);
+  });
+
+  document.getElementById('enzi-take-me-btn').addEventListener('click', e => {
+    e.stopPropagation();
+    if (!enziSelectedCountry) return;
+    navigateTo({ level: 'cities', country: enziSelectedCountry });
+  });
+
+  const enziInput = document.getElementById('enzi-input');
+  enziInput.addEventListener('keydown', async e => {
+    if (e.key !== 'Enter') return;
+    const query = enziInput.value.trim();
+    if (!query || enziPending || !enziSelectedCountry) return;
+
+    enziInput.value = '';
+    enziInput.disabled = true;
+    enziPending = true;
+
+    const messages = document.getElementById('enzi-messages');
+    appendMessageBubble(messages, 'user', query);
+    enziHistory.push({ role: 'user', content: query });
+
+    const thinking = appendThinkingBubble(messages);
+
+    try {
+      const reply = await queryAI(query, {
+        mode: 'world',
+        country: enziSelectedCountry.name,
+        knownPlaces: getCountries().map(c => c.name),
+        history: enziHistory,
+      });
+      thinking?.remove();
+      await typeReplyBubble(messages, reply);
+      enziHistory.push({ role: 'assistant', content: reply });
+    } catch (err) {
+      console.warn('[Enzi] Chat failed:', err.message);
+      thinking?.remove();
+      await typeReplyBubble(messages, 'Hmm, the winds are quiet right now… try again shortly.');
+    } finally {
+      enziPending = false;
+      enziInput.disabled = false;
+      enziInput.focus();
+    }
+  });
+
+  setTimeout(async () => {
+    try {
+      const [data, countries] = await Promise.all([
+        loadEnziMock(),
+        Promise.resolve(getCountries()),
+      ]);
+      if (!countries.length) return;
+
+      const selected = pickRandom(countries);
+      enziSelectedCountry = selected;
+      const lines = buildEnziMessage(selected.name, data);
+
+      widget.classList.add('visible');
+      const container = document.getElementById('enzi-text');
+      if (!container) return;
+      await typeLines(lines, container);
+    } catch (err) {
+      console.warn('[Enzi] Homepage AI failed:', err.message);
+    }
+  }, 3500);
+}
+
+function setEnziHomeVisible(visible) {
+  const widget = document.getElementById('enzi-home');
+  if (!widget) return;
+  widget.classList.toggle('dimmed', !visible);
+  if (!visible) {
+    enziExpanded = false;
+    widget.classList.remove('expanded');
+  }
 }

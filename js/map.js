@@ -21,6 +21,14 @@ let map = null;
 let satelliteAdded = false;
 
 // ---------------------------------------------------------------------------
+// COUNTRY HIGHLIGHT — glowing border overlay for the selected country
+// ---------------------------------------------------------------------------
+
+const EMPTY_FEATURE_COLLECTION = { type: 'FeatureCollection', features: [] };
+const countryBorderCache = new Map(); // slug -> geojson | null (null = known missing)
+let highlightLayersAdded = false;
+
+// ---------------------------------------------------------------------------
 // AUTO-SPIN STATE
 // ---------------------------------------------------------------------------
 
@@ -45,17 +53,8 @@ export function initMap(containerId) {
     antialias: true,
     maxParallelImageRequests: 6,
     fadeDuration: 100,
+    attributionControl: false,
   });
-
-  map.addControl(
-    new maplibregl.ScaleControl({ maxWidth: 120, unit: 'metric' }),
-    'bottom-right'
-  );
-
-  map.addControl(
-    new maplibregl.NavigationControl({ showCompass: true }),
-    'bottom-right'
-  );
 
   map.on('load', () => {
     console.log('[Map] Style loaded — adding layers…');
@@ -79,6 +78,7 @@ export function initMap(containerId) {
     bindAutoSpin();
 
     logLayerStack();
+    initBottomBar();
   });
 
   return map;
@@ -331,7 +331,7 @@ function addCloudsLayer() {
         id: 'clouds-layer',
         type: 'raster',
         source: 'clouds',
-        layout: { visibility: 'none' },
+        layout: { visibility: 'visible' },
         paint: {
           'raster-opacity': [
             'interpolate', ['linear'], ['zoom'],
@@ -519,6 +519,141 @@ export function setAutoSpin(enabled) {
   console.log('[Toggle] Auto-spin →', enabled ? 'ON' : 'OFF');
 }
 
+export function setEarthRotation(enabled) {
+  setAutoSpin(enabled);
+}
+
+// ---------------------------------------------------------------------------
+// COUNTRY HIGHLIGHT — glowing border overlay
+// ---------------------------------------------------------------------------
+// Border polygons are bundled locally (data/borders/<slug>.geojson) rather than
+// fetched, since the base vector style only ships border *lines*, not fillable
+// per-country polygons. Only curated countries have a file — others simply
+// clear the overlay (see loadCountryBorder's fetch failure branch).
+
+function countrySlug(name) {
+  return name.toLowerCase().replace(/\s+/g, '-');
+}
+
+async function loadCountryBorder(name) {
+  const slug = countrySlug(name);
+  if (countryBorderCache.has(slug)) return countryBorderCache.get(slug);
+
+  try {
+    const url = new URL(`../data/borders/${slug}.geojson`, import.meta.url).href;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const geojson = await res.json();
+    countryBorderCache.set(slug, geojson);
+    return geojson;
+  } catch (err) {
+    console.warn(`[Highlight] No border data for "${name}":`, err.message);
+    countryBorderCache.set(slug, null);
+    return null;
+  }
+}
+
+function addCountryHighlightLayers() {
+  if (highlightLayersAdded) return;
+
+  map.addSource('country-highlight', {
+    type: 'geojson',
+    data: EMPTY_FEATURE_COLLECTION,
+  });
+
+  const firstSymbol = getFirstSymbolLayerId();
+
+  // Fill — soft amber tint across the whole country
+  map.addLayer(
+    {
+      id: 'country-highlight-fill',
+      type: 'fill',
+      source: 'country-highlight',
+      paint: { 'fill-color': '#ffb020', 'fill-opacity': 0.12 },
+    },
+    firstSymbol
+  );
+
+  // Glow ring — two stacked blurred lines (wide+soft, then narrower+brighter)
+  map.addLayer(
+    {
+      id: 'country-highlight-glow-outer',
+      type: 'line',
+      source: 'country-highlight',
+      paint: {
+        'line-color': '#ffb020',
+        'line-width': 14,
+        'line-blur': 14,
+        'line-opacity': 0.35,
+      },
+    },
+    firstSymbol
+  );
+  map.addLayer(
+    {
+      id: 'country-highlight-glow-inner',
+      type: 'line',
+      source: 'country-highlight',
+      paint: {
+        'line-color': '#ffcf6b',
+        'line-width': 5,
+        'line-blur': 5,
+        'line-opacity': 0.55,
+      },
+    },
+    firstSymbol
+  );
+
+  // Crisp border on top
+  map.addLayer(
+    {
+      id: 'country-highlight-line',
+      type: 'line',
+      source: 'country-highlight',
+      paint: {
+        'line-color': '#ffe6b3',
+        'line-width': 1.5,
+        'line-opacity': 0.9,
+      },
+    },
+    firstSymbol
+  );
+
+  highlightLayersAdded = true;
+  console.log('[Map] Country highlight layers added');
+}
+
+function applyCountryHighlight(name, geojson) {
+  addCountryHighlightLayers();
+  const source = map.getSource('country-highlight');
+  if (!source) return;
+
+  source.setData(geojson ?? EMPTY_FEATURE_COLLECTION);
+  console.log('[Highlight] Country →', name, geojson ? 'ON' : '(no border data)');
+}
+
+export async function highlightCountry(name) {
+  if (!map || !name) return;
+
+  const geojson = await loadCountryBorder(name);
+
+  // addSource/addLayer throw if the style hasn't finished loading yet — a real
+  // race if a curated country is clicked (UI is interactive immediately) before
+  // the vector tile style resolves. Defer to the pending 'load' event instead.
+  if (!map.isStyleLoaded()) {
+    map.once('load', () => applyCountryHighlight(name, geojson));
+    return;
+  }
+
+  applyCountryHighlight(name, geojson);
+}
+
+export function clearCountryHighlight() {
+  if (!map) return;
+  const source = map.getSource('country-highlight');
+  if (source) source.setData(EMPTY_FEATURE_COLLECTION);
+}
+
 // ---------------------------------------------------------------------------
 // CAMERA (STABLE — DO NOT MODIFY)
 // ---------------------------------------------------------------------------
@@ -584,6 +719,43 @@ function logLayerStack() {
     '[Map] Layer stack (custom):',
     custom.map(l => `${l.id} [${l.layout?.visibility ?? 'visible'}]`)
   );
+}
+
+// ---------------------------------------------------------------------------
+// BOTTOM BAR — custom control container
+// ---------------------------------------------------------------------------
+// Adds Attribution, Scale, and Navigation controls to the map then moves
+// their rendered DOM nodes into #bottom-bar in the desired order:
+//   [Built by Xexin.] [Attribution] [Scale] [Nav]
+
+function initBottomBar() {
+  const bar = document.getElementById('bottom-bar');
+  if (!bar) return;
+
+  const attribCtrl = new maplibregl.AttributionControl({ compact: true });
+  const scaleCtrl  = new maplibregl.ScaleControl({ maxWidth: 100, unit: 'metric' });
+  const navCtrl    = new maplibregl.NavigationControl({ showCompass: true });
+
+  // Add to map so MapLibre wires up their internal state
+  map.addControl(attribCtrl, 'bottom-right');
+  map.addControl(scaleCtrl,  'bottom-right');
+  map.addControl(navCtrl,    'bottom-right');
+
+  // After a tick the controls have rendered their _container elements
+  requestAnimationFrame(() => {
+    const credit = bar.querySelector('.bar-credit');
+
+    // Insert in order after the credit span
+    if (attribCtrl._container) bar.insertBefore(attribCtrl._container, null);
+    if (scaleCtrl._container)  bar.insertBefore(scaleCtrl._container, null);
+    if (navCtrl._container)    bar.insertBefore(navCtrl._container, null);
+
+    // Hide the now-empty MapLibre corner container
+    const corner = document.querySelector('.maplibregl-ctrl-bottom-right');
+    if (corner) corner.style.display = 'none';
+
+    console.log('[Map] Bottom bar assembled');
+  });
 }
 
 export function getMap() {
